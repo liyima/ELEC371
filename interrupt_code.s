@@ -3,9 +3,13 @@
 # interrupt code
 check_for_input_port_interrupt:
 
-  andi r3, r2, Ox2000 # assume ipending value is previously read into r2
-  beq r3, r0
+  andi  r3, r2, Ox2000 # assume ipending value is previously read into r2
+  beq   r3, r0
 
 handle_input_port:
+
   ldwio r3, INPORT_DATA(r0)
+  stw   r3, DATA_FROM_PORT(r0)
+  movi  r3, 1
+  stw   r3, FLAG(r0)
   
