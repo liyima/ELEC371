@@ -33,7 +33,7 @@ LC_loop:
 	addi r2, r2, 4
 	addi r3, r3, 4
 	subi r4, r4, 1
-	# if counter is >0, loop through list
+	# if counter is > 0, loop through list
 	bgt r4, r0, LC_loop
 	
 	ldw	r2, 12(sp) # input list
