@@ -12,7 +12,7 @@ _start:
 	Call SelectLarger
 	
 SelectLarger:
-	subi	sp, sp, 24
+	subi		sp, sp, 24
 	stw		r2, 20(sp)	# dest list
 	stw		r3, 16(sp)	# list 1
 	stw		r4, 12(sp)	# list 2
@@ -32,10 +32,10 @@ SL_Then:
 	stw		r6, 0(r2)
 
 SL_End:
-	addi	r2, r2, 4
-	addi	r3, r3, 4
-	addi	r4, r4, 4
-	subi	r5, r5, 1
+	addi		r2, r2, 4
+	addi		r3, r3, 4
+	addi		r4, r4, 4
+	subi		r5, r5, 1
 	bgt		r5, r0, SL_Loop
 	
 	ldw		r2, 20(sp)	# dest list
@@ -44,13 +44,13 @@ SL_End:
 	ldw		r5, 8(sp)	# N
 	ldw		r6, 4(sp)	# load this register into dest list
 	ldw		r7, 0(sp)
-	addi	sp, sp, 24
+	addi		sp, sp, 24
 	
 	ret
 
 .org 0x1000
 
-DEST_LIST:	.skip 16
-LIST1:		.word -9, 13, 0xFF, 167
-LIST2:		.word 24, -5, 0, 192
+DEST_LIST:		.skip 16
+LIST1:			.word -9, 13, 0xFF, 167
+LIST2:			.word 24, -5, 0, 192
 N:			.word 4
