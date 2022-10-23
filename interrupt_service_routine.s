@@ -26,5 +26,5 @@ EndBreak:
 	addi	sp, sp 12
 	addi	sp, sp, 4
 
-	eret			# eret copies ea to program counter (return address but for interrupts) 
+	eret			# eret copies ea to program counter (return address bit for interrupts) 
 				# copy enable status contents to status (IE is reenabled to recognize interrupts again)
