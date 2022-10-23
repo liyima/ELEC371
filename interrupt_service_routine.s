@@ -5,7 +5,7 @@ ISR:
 	stw	r2, 4(sp)
 	stw	r3, 0(sp)
 
-rdctl	r2, ipending
+	rdctl	r2, ipending
 
 checkHandleX:
 	andi	r3, r2, 0x80000000
@@ -24,6 +24,6 @@ EndBreak:
 	ldw	r2, 4(sp)
 	ldw	r3, 0(sp)
 	addi	sp, sp 12
+	addi	sp, sp, 4
 
 	eret
-	
