@@ -1,5 +1,5 @@
 ISR:
-	subi 	ea, ea, 4	#always need this line
+	subi 	ea, ea, 4	#always need this line, ea saves address of last instruction before the interrupt
 	subi	sp, sp 12
 	stw	ra, 8(sp)	# should always have ra in a nested subroutine, because the interrupt can happen at any time during a process' execution
 	stw	r2, 4(sp)
