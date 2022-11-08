@@ -1,0 +1,45 @@
+# timer interrupts every 0.5 seonds affecting right-most hex display
+
+#define HEX_DISPLAYS (volatile unsigned int *)
+#define SWITCHES (volatile unsigned int *)
+#define HEX_ZERO (volatile unsigned int *) 0x0
+#define HEX_ONE (volatile unsigned int *) 0x1
+
+void HandleTimer(void);
+
+void interrupt_handler(void) {
+  .
+  .
+  .
+    <call HandleTimer>
+}
+
+void init(void) {
+  .
+  .
+  .
+}
+
+void ToggleRightHexDisplay(void){
+  unsigned int bits, pattern;
+  bits = *HEX_DISPLAYS;
+  pattern = bits & 0xFF; # mask and get bottom 8 bits
+  if (pattern == HEX_ZERO)
+    pattern = HEX_ONE;
+  else
+    pattern = HEX_ZERO;
+  bits = bits & 0xFFFFFF00; # preserve upper 24 bits and created a hole
+  bits = bits | pattern;
+  *HEX_DISPLAY = bits;
+}
+
+void HandleTimer(void) {
+  # must clear the interrupt
+  # write to status register
+  *TIMER_STATUS = 0;
+  ToggleRightHexDisplay();
+}
+
+unsigned int ReadSevenSwitches(void) {
+  return *SWITCHES & 0x7F;
+}
