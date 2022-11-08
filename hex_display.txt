@@ -32,7 +32,6 @@ void ToggleRightHexDisplay(void){
   bits = bits | pattern;
   *HEX_DISPLAY = bits;
 }
-
 void HandleTimer(void) {
   # must clear the interrupt
   # write to status register
